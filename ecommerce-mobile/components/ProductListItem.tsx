@@ -11,22 +11,19 @@ export default function ProductListItem({ product }: { product: any }) {
     <Card className="p-5 rounded-lg max-w-[360px] m-3">
       <Image
         source={{
-          uri: "https://gluestack.github.io/public-blog-video-assets/saree.png",
+          uri: product.image,
         }}
         className="mb-6 h-[240px] w-full rounded-md aspect-[4/3]"
-        alt="image"
+        alt={`${product.name} image`}
       />
       <Text className="text-sm font-normal mb-2 text-typography-700">
-        Fashion Clothing
+        {product.name}
       </Text>
       <VStack className="mb-6">
         <Heading size="md" className="mb-4">
-          Cotton Kurta
+          {product.price}
         </Heading>
-        <Text size="sm">
-          Floral embroidered notch neck thread work cotton kurta in white and
-          black.
-        </Text>
+        <Text size="sm">{product.description}</Text>
       </VStack>
       <Box className="flex-col sm:flex-row">
         <Button className="px-4 py-2 mr-0 mb-3 sm:mr-3 sm:mb-0 sm:flex-1">
