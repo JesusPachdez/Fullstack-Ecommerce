@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@expo/html-elements": "^0.4.2",
+    "@gluestack-ui/image": "^0.1.17"
+  }
+}
