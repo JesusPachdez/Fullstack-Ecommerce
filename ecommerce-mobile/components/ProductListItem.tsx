@@ -15,6 +15,7 @@ export default function ProductListItem({ product }: { product: any }) {
         }}
         className="mb-6 h-[240px] w-full rounded-md aspect-[4/3]"
         alt={`${product.name} image`}
+        resizeMode="contain"
       />
       <Text className="text-sm font-normal mb-2 text-typography-700">
         {product.name}
