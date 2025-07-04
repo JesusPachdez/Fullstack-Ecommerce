@@ -22,7 +22,7 @@ export default function ProductListItem({ product }: { product: any }) {
       </Text>
       <VStack className="mb-6">
         <Heading size="md" className="mb-4">
-          {product.price}
+          {`$${product.price}`}
         </Heading>
         <Text size="sm">{product.description}</Text>
       </VStack>
