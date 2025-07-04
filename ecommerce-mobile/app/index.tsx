@@ -8,6 +8,8 @@ export default function Home() {
       data={products}
       numColumns={2}
       key={`flatlist-${2}`}
+      contentContainerClassName="gap-2"
+      columnWrapperClassName="gap-2"
       renderItem={({ item }) => <ProductListItem product={item} />}
     />
   );
