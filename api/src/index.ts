@@ -36,13 +36,16 @@
 // export const handler = serverless(app);
 
 import express from "express";
+import productsRoutes from "./routes/products/index.js";
 
 const app = express();
 const port = 3001;
 
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  res.send("Hello World! baby!!!");
 });
+
+app.use("/products", productsRoutes);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
