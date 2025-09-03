@@ -1,11 +1,11 @@
 // import { Router } from 'express';
-// import {
-//   listProducts,
-//   getProductById,
-//   createProduct,
-//   updateProduct,
-//   deleteProduct,
-// } from './productsController.js';
+import {
+  listProducts,
+  getProductById,
+  createProduct,
+  updateProduct,
+  deleteProduct,
+} from "./productsController.js";
 // import { validateData } from '../../middlewares/validationMiddleware.js';
 
 // import {
@@ -40,17 +40,14 @@ import { Router } from "express";
 
 const router = Router();
 
-router.get("/", (req, res) => {
-  res.send("the list of products");
-});
+router.get("/", listProducts);
 
-router.get("/:id", (req, res) => {
-  console.log(req.params);
-  res.send("a product");
-});
+router.get("/:id", getProductById);
 
-router.post("/", (req, res) => {
-  res.send("new product created");
-});
+router.post("/", createProduct);
+
+router.put("/:id", updateProduct);
+
+router.delete("/:id", deleteProduct);
 
 export default router;
