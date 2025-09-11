@@ -8,6 +8,13 @@
       "when": 1757030730495,
       "tag": "0000_high_rogue",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1757609443885,
+      "tag": "0001_cold_glorian",
+      "breakpoints": true
     }
   ]
 }
