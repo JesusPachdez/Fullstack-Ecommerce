@@ -1,6 +1,6 @@
 // import express, { json, urlencoded, Request } from 'express';
 // import productsRoutes from './routes/products/index.js';
-// import authRoutes from './routes/auth/index.js';
+import authRoutes from "./routes/auth/index.js";
 // import ordersRoutes from './routes/orders/index.js';
 // import stripeRoutes from './routes/stripe/index.js';
 
@@ -49,6 +49,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/products", productsRoutes);
+app.use("/auth", authRoutes);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
