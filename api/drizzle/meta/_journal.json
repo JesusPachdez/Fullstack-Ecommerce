@@ -15,6 +15,13 @@
       "when": 1757609443885,
       "tag": "0001_cold_glorian",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1758050836571,
+      "tag": "0002_plain_the_phantom",
+      "breakpoints": true
     }
   ]
 }
