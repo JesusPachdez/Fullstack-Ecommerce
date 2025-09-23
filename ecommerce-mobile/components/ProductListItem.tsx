@@ -4,8 +4,9 @@ import { Heading } from "@/components/ui/heading";
 import { Image } from "@/components/ui/image";
 import { Link } from "expo-router";
 import { Pressable } from "react-native";
+import { memo } from "react";
 
-export default function ProductListItem({ product }: { product: any }) {
+export default memo(function ProductListItem({ product }: { product: any }) {
   return (
     <Link href={`/product/${product.id}`} asChild>
       <Pressable className="flex-1">
@@ -28,4 +29,4 @@ export default function ProductListItem({ product }: { product: any }) {
       </Pressable>
     </Link>
   );
-}
+});
