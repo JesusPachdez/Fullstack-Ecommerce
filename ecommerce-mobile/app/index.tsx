@@ -1,9 +1,17 @@
 import { FlatList, useWindowDimensions } from "react-native";
-import { memo } from "react";
-import products from "../assets/products.json";
+import { memo, useEffect, useState } from "react";
 import ProductListItem from "../components/ProductListItem";
+import { listProducts } from "@/api/products";
 
 export default memo(function Home() {
+  const [products, setProducts] = useState([]);
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const data = await listProducts();
+      setProducts(data);
+    };
+    fetchProducts();
+  }, []);
   const { width } = useWindowDimensions();
   const numberOfColumns =
     width > 1200 ? 4 : width > 850 ? 3 : width > 400 ? 2 : 1;
