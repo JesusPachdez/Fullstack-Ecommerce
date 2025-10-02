@@ -8,14 +8,27 @@ import { Image } from "@/components/ui/image";
 
 import { Stack, useLocalSearchParams } from "expo-router";
 
-import products from "@/assets/products.json";
+import { useQuery } from "@tanstack/react-query";
+import { fetchProductById } from "@/api/products";
+import { ActivityIndicator } from "react-native";
 
 export default function ProductDetailsScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
 
-  const product = products.find((product) => product.id === Number(id));
+  const {
+    data: product,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["product", id],
+    queryFn: () => fetchProductById(Number(id)),
+  });
 
-  if (!product) {
+  if (isLoading) {
+    return <ActivityIndicator />;
+  }
+
+  if (error) {
     return <Text>Product not found</Text>;
   }
 
