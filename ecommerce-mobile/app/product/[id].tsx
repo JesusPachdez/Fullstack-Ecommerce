@@ -17,6 +17,9 @@ export default function ProductDetailsScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
 
   const addProduct = useCart((state) => state.addProduct);
+  const cartItems = useCart((state) => state.items);
+
+  console.log(JSON.stringify(cartItems, null, 2));
 
   const {
     data: product,
