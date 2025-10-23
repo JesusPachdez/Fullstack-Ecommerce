@@ -19,8 +19,10 @@ const getIconStyle = (size: string = "md") => {
     lg: "h-5 w-5",
     xl: "h-6 w-6",
   };
-  
-  return `text-typography-950 fill-none pointer-events-none ${sizeMap[size] || sizeMap.md}`;
+
+  return `text-typography-950 fill-none pointer-events-none ${
+    sizeMap[size] || sizeMap.md
+  }`;
 };
 
 cssInterop(UIIcon, {
