@@ -19,7 +19,7 @@ export default function ProductDetailsScreen() {
   const addProduct = useCart((state) => state.addProduct);
   const cartItems = useCart((state) => state.items);
 
-  console.log(JSON.stringify(cartItems, null, 2));
+  // console.log(JSON.stringify(cartItems, null, 2));
 
   const {
     data: product,
