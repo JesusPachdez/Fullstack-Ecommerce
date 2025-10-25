@@ -3,16 +3,26 @@ import { FlatList } from "react-native";
 import { Text } from "@/components/ui/text";
 import { HStack } from "@/components/ui/hstack";
 import { VStack } from "@/components/ui/vstack";
+import { Button, ButtonText } from "@/components/ui/button";
+import { Redirect } from "expo-router";
 
 export default function CartScreen() {
   const cartItems = useCart((state) => state.items);
+  const resetCart = useCart((state) => state.resetCart);
 
-  console.log(JSON.stringify(cartItems, null, 2));
+  const onCheckout = async () => {
+    // Send order to server
+    resetCart();
+  };
+
+  if (cartItems.length === 0) {
+    return <Redirect href={"/"} />;
+  }
 
   return (
     <FlatList
       data={cartItems}
-      contentContainerClassName="gap-2 max-w-[960px] w-full mx-auto"
+      contentContainerClassName="gap-2 max-w-[960px] w-full mx-auto p-2"
       renderItem={({ item }) => (
         <HStack className="bg-white p-3">
           <VStack space="sm">
@@ -21,6 +31,11 @@ export default function CartScreen() {
           </VStack>
           <Text className="ml-auto">{item.quantity}</Text>
         </HStack>
+      )}
+      ListFooterComponent={() => (
+        <Button onPress={onCheckout}>
+          <ButtonText>Checkout</ButtonText>
+        </Button>
       )}
     />
   );

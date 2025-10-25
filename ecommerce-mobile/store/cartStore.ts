@@ -6,4 +6,6 @@ export const useCart = create((set) => ({
   addProduct: (product: any) =>
     //TODO: If already in cart, increase quantity, else, add a new item.
     set((state) => ({ items: [...state.items, { product, quantity: 1 }] })),
+
+  resetCart: () => set({ items: [] }),
 }));
