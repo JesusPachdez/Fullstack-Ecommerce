@@ -9,16 +9,26 @@ import { HStack } from "@/components/ui/hstack";
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { login, signup } from "@/api/auth";
+import { useAuth } from "@/store/authStore";
+import { Redirect } from "expo-router";
 
 export default function LoginScreen() {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const setUser = useAuth((state) => state.setUser);
+  const setToken = useAuth((state) => state.setToken);
+  const isLoggedIn = useAuth((state) => !!state.token);
+
   const loginMutation = useMutation({
     mutationFn: () => login(email, password),
     onSuccess: (data) => {
       console.log("Logged in successfully", data);
+      if (data.user && data.token) {
+        setUser(data.user);
+        setToken(data.token);
+      }
     },
     onError: () => {
       console.log("Failed to login");
@@ -29,6 +39,10 @@ export default function LoginScreen() {
     mutationFn: () => signup(email, password),
     onSuccess: (data) => {
       console.log("Signed up successfully", data);
+      if (data.user && data.token) {
+        setUser(data.user);
+        setToken(data.token);
+      }
     },
     onError: (error) => {
       console.log("Failed to signup: ", error.message);
@@ -40,6 +54,10 @@ export default function LoginScreen() {
       return !showState;
     });
   };
+
+  if (isLoggedIn) {
+    return <Redirect href="/" />;
+  }
 
   return (
     <FormControl
