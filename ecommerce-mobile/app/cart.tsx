@@ -5,14 +5,34 @@ import { HStack } from "@/components/ui/hstack";
 import { VStack } from "@/components/ui/vstack";
 import { Button, ButtonText } from "@/components/ui/button";
 import { Redirect } from "expo-router";
+import { useMutation } from "@tanstack/react-query";
+import { createOrder } from "@/api/orders";
 
 export default function CartScreen() {
   const cartItems = useCart((state) => state.items);
   const resetCart = useCart((state) => state.resetCart);
 
+  const createOrderMutation = useMutation({
+    mutationFn: () =>
+      createOrder(
+        cartItems.map((item) => ({
+          productId: item.product.id,
+          quantity: item.quantity,
+          price: item.product.price, // TODO: get the actual price from server side
+        }))
+      ),
+    onSuccess: (data) => {
+      console.log(data);
+
+      resetCart();
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
+
   const onCheckout = async () => {
-    // Send order to server
-    resetCart();
+    createOrderMutation.mutate();
   };
 
   if (cartItems.length === 0) {
