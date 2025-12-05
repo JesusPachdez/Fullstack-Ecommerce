@@ -1,4 +1,4 @@
-import { withGluestackUI } from '@gluestack/ui-next-adapter';
+import { withGluestackUI } from "@gluestack/ui-next-adapter";
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   eslint: {
@@ -8,6 +8,18 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   transpilePackages: [],
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**",
+      },
+      {
+        protocol: "http",
+        hostname: "**",
+      },
+    ],
+  },
 };
 
 export default withGluestackUI(nextConfig);
