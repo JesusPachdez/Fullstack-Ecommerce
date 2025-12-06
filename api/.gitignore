@@ -1,3 +1,6 @@
 node_modules
 dist
 .env
+
+# BACKEND_GUIDE
+BACKEND_GUIDE.md
