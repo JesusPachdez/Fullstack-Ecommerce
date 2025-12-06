@@ -1,6 +1,17 @@
 import { create } from "zustand";
 
-export const useCart = create((set) => ({
+interface CartItem {
+  product: any;
+  quantity: number;
+}
+
+interface CartState {
+  items: CartItem[];
+  addProduct: (product: any) => void;
+  resetCart: () => void;
+}
+
+export const useCart = create<CartState>()((set) => ({
   items: [],
 
   addProduct: (product: any) =>

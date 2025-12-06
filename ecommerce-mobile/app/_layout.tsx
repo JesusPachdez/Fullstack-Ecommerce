@@ -8,15 +8,28 @@ import { Pressable } from "react-native";
 import { useCart } from "@/store/cartStore";
 import { Text } from "@/components/ui/text";
 import { useAuth } from "@/store/authStore";
-import { Button, ButtonText } from "@/components/ui/button";
+import { Button, ButtonText, ButtonSpinner } from "@/components/ui/button";
+import { Box } from "@/components/ui/box";
+import { VStack } from "@/components/ui/vstack";
+import { ActivityIndicator } from "react-native";
+import { useState } from "react";
 
 const queryClient = new QueryClient();
 
 export default function RootLayout() {
-  const cartItemsNumber = useCart((state) => state.items.length);
+  const cartItemsNumber = useCart((state: any) => state.items.length);
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
 
-  const isLoggedIn = useAuth((state) => !!state.token);
-  const logout = useAuth((state) => state.logout);
+  const isLoggedIn = useAuth((state: any) => !!state.token);
+  const logout = useAuth((state: any) => state.logout);
+
+  const handleLogout = async () => {
+    setIsLoggingOut(true);
+    // Delay to show full-screen loading state for better UX
+    await new Promise((resolve) => setTimeout(resolve, 800));
+    logout();
+    setIsLoggingOut(false);
+  };
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -48,8 +61,9 @@ export default function RootLayout() {
                   <Button
                     variant="link"
                     size="sm"
-                    onPress={logout}
+                    onPress={handleLogout}
                     className="px-2"
+                    isDisabled={isLoggingOut}
                   >
                     <Icon as={LogOut} size="sm" className="mr-1" />
                     <ButtonText>Logout</ButtonText>
@@ -59,6 +73,27 @@ export default function RootLayout() {
           />
           <Stack.Screen name="product/[id]" options={{ title: "Product" }} />
         </Stack>
+        {isLoggingOut && (
+          <Box
+            className="absolute inset-0 bg-black/50 flex items-center justify-center z-50"
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              backgroundColor: "rgba(0, 0, 0, 0.5)",
+              zIndex: 9999,
+            }}
+          >
+            <VStack space="md" className="items-center">
+              <ActivityIndicator size="large" color="#ffffff" />
+              <Text className="text-white text-base font-medium">
+                Logging out...
+              </Text>
+            </VStack>
+          </Box>
+        )}
       </GluestackUIProvider>
     </QueryClientProvider>
   );

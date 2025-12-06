@@ -1,4 +1,4 @@
-import { Button, ButtonText } from "@/components/ui/button";
+import { Button, ButtonText, ButtonSpinner } from "@/components/ui/button";
 import { FormControl } from "@/components/ui/form-control";
 import { Heading } from "@/components/ui/heading";
 import { Input, InputField, InputIcon, InputSlot } from "@/components/ui/input";
@@ -90,11 +90,24 @@ export default function LoginScreen() {
             className="flex-1"
             variant="outline"
             onPress={() => signupMutation.mutate()}
+            isDisabled={signupMutation.isPending || loginMutation.isPending}
           >
-            <ButtonText>Sign up</ButtonText>
+            {signupMutation.isPending ? (
+              <ButtonSpinner />
+            ) : (
+              <ButtonText>Sign up</ButtonText>
+            )}
           </Button>
-          <Button className="flex-1" onPress={() => loginMutation.mutate()}>
-            <ButtonText>Sign in</ButtonText>
+          <Button
+            className="flex-1"
+            onPress={() => loginMutation.mutate()}
+            isDisabled={loginMutation.isPending || signupMutation.isPending}
+          >
+            {loginMutation.isPending ? (
+              <ButtonSpinner />
+            ) : (
+              <ButtonText>Sign in</ButtonText>
+            )}
           </Button>
         </HStack>
       </VStack>
