@@ -7,7 +7,10 @@ import { memo } from "react";
 
 export default memo(function ProductListItem({ product }: { product: any }) {
   return (
-    <Link href={`/product/${product.id}`} className="flex flex-1 min-w-[300px]">
+    <Link
+      href={`/dashboard/products/${product.id}`}
+      className="flex flex-1 min-w-[300px]"
+    >
       <Card className="p-5 rounded-lg flex-1 bg-white w-full">
         <Image
           source={{
