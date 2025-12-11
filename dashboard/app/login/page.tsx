@@ -1,3 +1,6 @@
+"use client";
+import { useState } from "react";
+
 import { FormControl } from "@/components/ui/form-control";
 import { VStack } from "@/components/ui/vstack";
 import { Heading } from "@/components/ui/heading";
@@ -7,6 +10,10 @@ import { HStack } from "@/components/ui/hstack";
 import { Button, ButtonText, ButtonSpinner } from "@/components/ui/button";
 
 export default function LoginScreen() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState("");
+
   return (
     <FormControl
       isInvalid={false}
