@@ -12,7 +12,6 @@ import { Button, ButtonText, ButtonSpinner } from "@/components/ui/button";
 export default function LoginScreen() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState("");
 
   return (
     <FormControl
@@ -31,7 +30,7 @@ export default function LoginScreen() {
           <Text className="text-typography-500">Password</Text>
           <Input className="text-center">
             <InputField
-              type={showPassword ? "text" : "password"}
+              type="password"
               value={password}
               onChangeText={setPassword}
             />
