@@ -5,7 +5,7 @@ import { FormControl } from "@/components/ui/form-control";
 import { VStack } from "@/components/ui/vstack";
 import { Heading } from "@/components/ui/heading";
 import { Text } from "@/components/ui/text";
-import { Input, InputField, InputSlot, InputIcon } from "@/components/ui/input";
+import { Input, InputField } from "@/components/ui/input";
 import { HStack } from "@/components/ui/hstack";
 import { Button, ButtonText, ButtonSpinner } from "@/components/ui/button";
 
@@ -35,9 +35,6 @@ export default function LoginScreen() {
               value={password}
               onChangeText={setPassword}
             />
-            <InputSlot className="pr-3" onPress={handleState}>
-              <InputIcon as={showPassword ? EyeIcon : EyeOffIcon} />
-            </InputSlot>
           </Input>
         </VStack>
         <HStack space="sm">
