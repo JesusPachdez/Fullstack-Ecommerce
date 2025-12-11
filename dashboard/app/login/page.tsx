@@ -7,7 +7,7 @@ import { Heading } from "@/components/ui/heading";
 import { Text } from "@/components/ui/text";
 import { Input, InputField } from "@/components/ui/input";
 import { HStack } from "@/components/ui/hstack";
-import { Button, ButtonText, ButtonSpinner } from "@/components/ui/button";
+import { Button, ButtonText } from "@/components/ui/button";
 
 export default function LoginScreen() {
   const [email, setEmail] = useState("");
@@ -19,15 +19,17 @@ export default function LoginScreen() {
       className="p-4 border rounded-lg max-w-[500px] border-outline-300 bg-white m-2"
     >
       <VStack space="xl">
-        <Heading className="text-typography-900 leading-3 pt-3">Login</Heading>
+        <Heading className="text-typography-900 leading-3 pt-3 color-black">
+          Login
+        </Heading>
         <VStack space="xs">
-          <Text className="text-typography-500">Email</Text>
+          <Text className="text-typography-500 color-black">Email</Text>
           <Input className="min-w-[250px]">
             <InputField type="text" value={email} onChangeText={setEmail} />
           </Input>
         </VStack>
         <VStack space="xs">
-          <Text className="text-typography-500">Password</Text>
+          <Text className="text-typography-500 color-black">Password</Text>
           <Input className="text-center">
             <InputField
               type="password"
@@ -37,28 +39,11 @@ export default function LoginScreen() {
           </Input>
         </VStack>
         <HStack space="sm">
-          <Button
-            className="flex-1"
-            variant="outline"
-            onPress={() => signupMutation.mutate()}
-            isDisabled={signupMutation.isPending || loginMutation.isPending}
-          >
-            {signupMutation.isPending ? (
-              <ButtonSpinner />
-            ) : (
-              <ButtonText>Sign up</ButtonText>
-            )}
+          <Button className="flex-1" variant="outline" onPress={() => {}}>
+            <ButtonText className="color-black">Sign up</ButtonText>
           </Button>
-          <Button
-            className="flex-1"
-            onPress={() => loginMutation.mutate()}
-            isDisabled={loginMutation.isPending || signupMutation.isPending}
-          >
-            {loginMutation.isPending ? (
-              <ButtonSpinner />
-            ) : (
-              <ButtonText>Sign in</ButtonText>
-            )}
+          <Button className="flex-1" onPress={() => {}}>
+            <ButtonText className="color-black">Sign in</ButtonText>
           </Button>
         </HStack>
       </VStack>
