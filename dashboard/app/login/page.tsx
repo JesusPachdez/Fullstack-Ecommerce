@@ -9,10 +9,29 @@ import { Input, InputField } from "@/components/ui/input";
 import { HStack } from "@/components/ui/hstack";
 import { Button, ButtonText } from "@/components/ui/button";
 import { Box } from "@/components/ui/box";
+import { login, signup } from "@/api/auth";
 
 export default function LoginScreen() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const onLogin = async () => {
+    try {
+      const result = await login(email, password);
+      console.log("page.tsx (18) - result", result);
+    } catch (error) {
+      console.log("page.tsx (20) - error", error);
+    }
+  };
+
+  const onSignUp = async () => {
+    try {
+      const result = await signup(email, password);
+      console.log("page.tsx (23) - result", result);
+    } catch (error) {
+      console.log("page.tsx (29) - error", error);
+    }
+  };
 
   return (
     <Box className="flex-1 min-h-screen justify-center items-center">
@@ -47,10 +66,10 @@ export default function LoginScreen() {
             </Input>
           </VStack>
           <HStack space="sm">
-            <Button className="flex-1" variant="outline" onPress={() => {}}>
+            <Button className="flex-1" variant="outline" onPress={onSignUp}>
               <ButtonText className="color-black">Sign up</ButtonText>
             </Button>
-            <Button className="flex-1" onPress={() => {}}>
+            <Button className="flex-1" onPress={onLogin}>
               <ButtonText className="color-black">Sign in</ButtonText>
             </Button>
           </HStack>
